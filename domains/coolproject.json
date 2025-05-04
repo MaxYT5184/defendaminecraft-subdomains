@@ -1,0 +1,6 @@
+{
+  "subdomain": "coolproject",
+  "owner": "sampleuser",
+  "repo": "https://github.com/sampleuser/coolproject",
+  "target": "sampleuser.github.io"
+}

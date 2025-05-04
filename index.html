@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Subdomain - defendaminecraft.online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Request a Subdomain</h1>
+    <p>Get your own subdomain under <strong>defendaminecraft.online</strong></p>
+
+    <form action="https://github.com/YOUR_USERNAME/defendaminecraft-subdomains/issues/new" method="get" target="_blank">
+      <input type="hidden" name="labels" value="subdomain request">
+      <input type="hidden" name="template" value="subdomain_request.yml">
+
+      <label for="username">GitHub Username:</label><br>
+      <input type="text" id="username" name="username" required><br><br>
+
+      <label for="subdomain">Desired Subdomain (e.g. coolproject):</label><br>
+      <input type="text" id="subdomain" name="subdomain" required><br><br>
+
+      <label for="repo">GitHub Repo URL:</label><br>
+      <input type="url" id="repo" name="repo" required><br><br>
+
+      <input type="submit" value="Request Subdomain">
+    </form>
+  </div>
+</body>
+</html>
