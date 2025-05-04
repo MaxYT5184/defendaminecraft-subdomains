@@ -2,30 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request a Subdomain - defendaminecraft.online</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Partner Application</title>
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .notice {
+      margin: 30px auto;
+      max-width: 500px;
+      background: #fff4cc;
+      padding: 15px;
+      border-left: 5px solid orange;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Request a Subdomain</h1>
-    <p>Get your own subdomain under <strong>defendaminecraft.online</strong></p>
 
-    <form action="https://github.com/MaxYT5184/defendaminecraft-subdomains/issues/new" method="get" target="_blank">
-      <input type="hidden" name="labels" value="subdomain request">
-      <input type="hidden" name="template" value="subdomain_request.yml">
+  <h1>Partner Application</h1>
 
-      <label for="username">GitHub Username:</label><br>
-      <input type="text" id="username" name="username" required><br><br>
-
-      <label for="subdomain">Desired Subdomain (e.g. coolproject):</label><br>
-      <input type="text" id="subdomain" name="subdomain" required><br><br>
-
-      <label for="repo">GitHub Repo URL:</label><br>
-      <input type="url" id="repo" name="repo" required><br><br>
-
-      <input type="submit" value="Request Subdomain">
-    </form>
+  <div class="notice">
+    <strong>Note:</strong> If you become a partner, you earn one free subdomain forever. If you stop being a partner, your subdomain will be deleted.
   </div>
+
+  <form id="partnerForm">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" required>
+
+    <label for="discord">Discord Username (e.g. User#1234):</label>
+    <input type="text" id="discord" required>
+
+    <label for="why">Why do you want to become a partner?</label>
+    <textarea id="why" rows="4" required></textarea>
+
+    <button type="submit">Apply</button>
+  </form>
+
+  <script>
+    document.getElementById('partnerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const discord = document.getElementById('discord').value;
+      const why = document.getElementById('why').value;
+
+      const webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"; // Replace with your actual webhook URL
+
+      const message = {
+        content: "**New Partner Application Submitted!**",
+        embeds: [{
+          title: "Partner Application",
+          color: 3447003,
+          fields: [
+            { name: "Name", value: name, inline: false },
+            { name: "Email", value: email, inline: false },
+            { name: "Discord", value: discord, inline: false },
+            { name: "Reason", value: why, inline: false }
+          ],
+          footer: { text: "Partner Application System" },
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(message)
+        });
+        alert("Application submitted successfully!");
+        document.getElementById('partnerForm').reset();
+      } catch (error) {
+        alert("Failed to send application. Please try again.");
+        console.error(error);
+      }
+    });
+  </script>
+
 </body>
 </html>
